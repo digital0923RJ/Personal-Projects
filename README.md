@@ -8,6 +8,13 @@
 
 - This approach ensured a robust and efficient image classification pipeline.
 
+- Future Plans:
+  - Integrate the classification model with drone technology to capture real-time images of agricultural fields.
+  - Use GPS coordinates to precisely identify and target weeds based on model predictions.
+  - Develop a product where drones can autonomously eliminate weeds using laser technology, enhancing efficiency and reducing the need for manual labor or chemical herbicides.
+  - Expand the dataset to improve model accuracy for different types of crops and weeds.
+  - Deploy the system in real-world agricultural environments for testing and further optimization.
+
 ## 2. Coin AI Automated Trading Algorithm (Dogecoin)
 
 -  The trading algorithm uses a volatility breakout strategy optimized with a parameter k, which is determined by maximizing cumulative returns. Real-time trading is supported with PyUpbit API for Dogecoin. Key features include:
