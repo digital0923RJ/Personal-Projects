@@ -25,15 +25,15 @@ def volatility_breakout_buy_strategy(df, k):
    return df
 
 def optimize_k(df):
-    k_values = np.linspace(0.01, 1, 100)  # 0.01부터 1까지 0.01 간격의 k 값 생성
+    k_values = np.linspace(0.01, 1, 100)  # Generarte k values from 0.01 to 1 at intervals
     results = []
     for k in k_values:
         df_copy = df.copy()
         result = volatility_breakout_buy_strategy(df_copy, k)
-        # k 값에 따른 최종 누적 수익률을 결과 리스트에 추가
+        # Add the final cumulative return to the result list based on the value of K
         results.append((k, result['cum_ret'].iloc[-1]))
 
-    # 결과를 데이터프레임으로 변환하고, 최대 누적 수익률을 가진 k 값을 찾아 반환
+    # Converts into a Dataframe and find the k value with the maximum cumulative return 
     results_df = pd.DataFrame(results, columns=['k', 'cum_ret'])
     optimal_k = results_df.loc[results_df['cum_ret'].idxmax(), 'k']
 
@@ -52,13 +52,13 @@ print(target_price)
 
 
 def get_current_price(ticker):
-    """현재가 조회"""
+    """Currrent Price"""
     return pyupbit.get_orderbook(ticker=ticker)["orderbook_units"][0]["ask_price"]
 current_price = get_current_price("KRW-DOGE")
 print(current_price)
 
 def get_ma10(ticker):
-    """10일 이동 평균선 조회"""
+    """10day moving average"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=10)
     ma10 = df['close'].rolling(10).mean().iloc[-1]
     return ma10
@@ -66,7 +66,7 @@ ma10 = get_ma10("KRW-DOGE")
 print(ma10)
 
 def get_start_time(ticker):
-    """시작 시점"""
+    """Starting point"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=1)
     start_time = df.index[0]
     return start_time
@@ -74,7 +74,7 @@ start_time = get_start_time("KRW-DOGE")
 
 
 def get_balance(ticker):
-    """잔고 조회"""
+    """Check Balance"""
     balances = upbit.get_balances()
     for b in balances:
         if b['currency'] == ticker:
